@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.jacky.facedemo.face.checkface.CheckFaceVm" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="CheckFaceVm" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.jacky.facedemo.widget.FaceDetectPreview
+            android:id="@+id/cameraview"
+            android:layout_width="@dimen/q1"
+            android:layout_height="@dimen/q1"
+            android:visibility="@{vm.login?View.VISIBLE:View.GONE}" />
+
+
+        <TextView
+            android:id="@+id/tvMsg"
+            style="@style/show_text"
+            android:layout_centerInParent="true"
+            android:text="@{vm.msg}" />
+
+        <TextView
+            android:layout_below="@+id/tvMsg"
+            style="@style/show_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/q60"
+            android:text="@{vm.info}"
+            android:visibility="@{vm.login?View.GONE:View.VISIBLE}" />
+    </RelativeLayout>
+</layout>

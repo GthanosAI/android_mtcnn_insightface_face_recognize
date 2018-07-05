@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnCompare"
+        style="@style/btn"
+        android:layout_marginTop="@dimen/q60"
+        android:text="对比" />
+
+    <Button
+        android:id="@+id/btnFaceAdd"
+        style="@style/btn"
+        android:layout_marginTop="@dimen/q60"
+        android:text="录入" />
+
+    <Button
+        android:id="@+id/btnCheckIn"
+        style="@style/btn"
+        android:layout_marginTop="@dimen/q60"
+        android:text="解锁" />
+
+    <Button
+        android:id="@+id/btnDemo"
+        style="@style/btn"
+        android:layout_marginTop="@dimen/q60"
+        android:text="demo" />
+
+</LinearLayout>

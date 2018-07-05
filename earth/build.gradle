@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+
+android {
+    def config = rootProject.ext.android
+
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+        multiDexEnabled = true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        externalNativeBuild {
+        }
+        debug {
+            jniDebuggable true
+        }
+    }
+    dataBinding {
+        enabled true
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile rootProject.ext.supportDependencies.recyclerview
+    compile rootProject.ext.supportDependencies.appcompat
+    compile rootProject.ext.supportDependencies.support_v13
+    compile rootProject.ext.supportDependencies.glide
+    compile rootProject.ext.supportDependencies.appcompat
+    compile rootProject.ext.supportDependencies.okhttp
+    compile rootProject.ext.supportDependencies.retrofit
+    compile rootProject.ext.supportDependencies.converter_gson
+    compile rootProject.ext.supportDependencies.rxjava
+    compile rootProject.ext.supportDependencies.rxandroid
+    compile rootProject.ext.supportDependencies.retrofit_rxjava_adapter
+    compile rootProject.ext.supportDependencies.stetho
+    testCompile 'junit:junit:4.12'
+}

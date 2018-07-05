@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="app_toast_layout" type="id" />
+    <item name="app_toast_first_row" type="id" />
+    <item name="app_toast_img" type="id" />
+    <item name="app_toast_text" type="id" />
+    <item name="app_toast_text_img" type="id" />
+</resources>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.jacky.facedemo.face.addface.AddFaceVm" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="AddFaceVm" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/q30"
+            android:layout_width="@dimen/q810"
+            android:layout_height="@dimen/q1080">
+
+            <com.jacky.facedemo.widget.FaceDetectPreview
+                android:id="@+id/cameraview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{vm.login? View.VISIBLE:View.GONE}" />
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{vm.login? View.GONE:View.VISIBLE}" />
+
+            <!--<ImageView-->
+            <!--android:id="@+id/iv_cover"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:visibility="@{vm.login? View.VISIBLE:View.GONE}" />-->
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tvMsg"
+            style="@style/show_text"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/q60"
+            android:text="@{vm.showMsg}"
+            tools:text="正在录入中..." />
+
+
+        <Button
+            android:id="@+id/btnNext"
+            style="@style/btn"
+            android:layout_marginTop="@dimen/q300"
+            android:text="下一步"
+            android:visibility="@{vm.login? View.GONE:View.VISIBLE}" />
+
+    </LinearLayout>
+</layout>
