@@ -133,8 +133,10 @@ public class FaceEngineManager {
         return faceRecogEngine.search(bitmap, path, bitmap.getWidth(), bitmap.getHeight(), result);
     }
 
-    public synchronized boolean addFace(byte[] yuvData, long ptr, int w, int h, int d, boolean mirror) {
-        return faceRecogEngine.addFaceYuv(yuvData, ptr, w, h, d, mirror);
+    public synchronized boolean addFace(byte[] yuvData, long ptr, int w, int h, int d, boolean mirror, boolean isSave) {
+        String savePath = isSave ? FaceFileConfig.FACE_IMG_DIR : "";
+
+        return faceRecogEngine.addFaceYuv(yuvData, ptr, w, h, d, mirror, isSave, savePath);
     }
 
     public synchronized boolean search(byte[] yuvData, int w, int h, int d, boolean mirror, String path, SearchResult result) {

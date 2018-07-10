@@ -15,7 +15,9 @@ public class FaceRecogEngine {
 
     public native static void clear();
 
-    public native boolean addFaceYuv(byte[] yuvData, long ptr, int w, int h, int degree, boolean isMirror);
+    public native boolean addFaceYuv(byte[] yuvData, long ptr, int w, int h, int degree,
+                                     boolean isMirror, boolean isSave, String savePath);
+
 
     public native boolean searchFaceYuv(byte[] yuvData, int w, int h, int degree, boolean isMirror, String dataPath,
                                         SearchResult searchResult);

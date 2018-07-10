@@ -3,11 +3,13 @@ package com.jacky.facedemo.face.checkface;
 
 import android.view.View;
 
+import com.gthanos.mface.FaceFileConfig;
 import com.gthanos.mface.model.SearchResult;
 import com.jacky.facedemo.R;
 import com.jacky.facedemo.base.BaseMvpDsFragment;
 import com.jacky.facedemo.databinding.FragmentFaceCheckBinding;
 
+import cn.com.earth.tools.LoadImageUtils;
 import cn.com.earth.widget.AppToolBar;
 
 /**
@@ -43,6 +45,8 @@ public class CheckFaceFragment extends BaseMvpDsFragment<CheckFacePresenter, Fra
         mDataBinding.cameraview.setVisibility(View.GONE);
         faceVm.setMsg("验证人脸成功").setLogin(false)
                 .setInfo(String.format("name:%s, id:%d".toLowerCase(), searchResult.getName(), searchResult.getId()));
+        LoadImageUtils.loadIcon(rootView.findViewById(R.id.avatar), FaceFileConfig.FACE_IMG_DIR + searchResult.getAvatar());
+
     }
 
     @Override

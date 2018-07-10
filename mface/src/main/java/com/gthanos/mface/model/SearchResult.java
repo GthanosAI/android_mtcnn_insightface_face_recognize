@@ -5,6 +5,7 @@ public class SearchResult {
     private long id;
     private String name;
     private float score;
+    private String avatar;
 
     public long getId() {
         return id;
@@ -33,12 +34,23 @@ public class SearchResult {
         return this;
     }
 
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public SearchResult setAvatar(String avatar) {
+        this.avatar = avatar;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "SearchResult{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", score=" + score +
+                ", avatar='" + avatar + '\'' +
                 '}';
     }
 }

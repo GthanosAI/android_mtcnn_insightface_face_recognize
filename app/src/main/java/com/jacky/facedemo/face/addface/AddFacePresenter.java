@@ -38,20 +38,30 @@ public class AddFacePresenter extends MvpBasePresenter<IAddFaceView> {
             return;
         }
         AsyncProcessor.getInstance().execute(() -> {
-            boolean ret = FaceEngineManager.getInstance().addFace(data.getBuf(), model.getNativePtr(),
-                    data.getWidth(), data.getHeight(), data.getDegree(), data.isMirror());
+            boolean ret = false;
+
+            if (faceNum < MAX_FACE -1){
+                ret = FaceEngineManager.getInstance().addFace(data.getBuf(), model.getNativePtr(),
+                        data.getWidth(), data.getHeight(), data.getDegree(), data.isMirror(), false);
+            }
 
             if (ret) {
                 faceNum++;
             }
 
-            if (faceNum >= MAX_FACE) {
-                if (isAvailable()) {
-                    isFinish = true;
-                    AsyncProcessor.getInstance().clearAll();
-                    LogUtils.e("dump file");
-                    model.dump();
-                    get().getHandler().post(() -> get().successAddFace());
+            if (faceNum >= MAX_FACE - 1) {
+                ret = FaceEngineManager.getInstance().addFace(data.getBuf(), model.getNativePtr(),
+                        data.getWidth(), data.getHeight(), data.getDegree(), data.isMirror(), true);
+
+                if (ret){
+                    faceNum ++;
+                    if (isAvailable()) {
+                        isFinish = true;
+                        AsyncProcessor.getInstance().clearAll();
+                        LogUtils.e("dump file");
+                        model.dump();
+                        get().getHandler().post(() -> get().successAddFace());
+                    }
                 }
             }
         });
