@@ -7,7 +7,6 @@ import android.util.Log;
 import com.gthanos.mface.model.SearchResult;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -80,44 +79,6 @@ public class FaceEngineManager {
         myOutput.close();
     }
 
-
-    private void toWriteToSingleFile(Context context, String fileName, String[] fileArray) {
-
-        File file = new File(fileName);
-        if (file.exists()) {
-            file.delete();
-        }
-
-        InputStream myInput;
-        try {
-            java.io.OutputStream myOutput = new FileOutputStream(fileName, true);
-
-            long total = 0;
-            for (String tmpFile : fileArray) {
-                total = 0;
-                myInput = context.getAssets().open(tmpFile);
-                byte[] buffer = new byte[1024];
-                int length = myInput.read(buffer);
-
-                total = length;
-
-                while (length > 0) {
-                    myOutput.write(buffer, 0, length);
-                    length = myInput.read(buffer);
-                    total += length;
-                }
-                myInput.close();
-            }
-            myOutput.flush();
-            myOutput.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public synchronized float compare(Bitmap b1, Bitmap b2) {
         long t1 = System.currentTimeMillis();
         float diff = (float) faceRecogEngine.compare(b1, b2, b1.getWidth(), b1.getHeight(), b2.getWidth(), b2.getHeight());
@@ -142,7 +103,6 @@ public class FaceEngineManager {
     public synchronized boolean search(byte[] yuvData, int w, int h, int d, boolean mirror, String path, SearchResult result) {
         return faceRecogEngine.searchFaceYuv(yuvData, w, h, d, mirror, path, result);
     }
-
 
 }
 
